@@ -12,7 +12,7 @@ export enum MemberBrandType {
 	ABSORBA = 'ABSORBA',
 	AGABANG = 'AGABANG',
 	MORI = 'MORI',
-	MOLO = 'MOLO',
+	ZARA_KIDS = 'ZARA KIDS',
 }
 registerEnumType(MemberBrandType, {
 	name: 'MemberBrandType',

@@ -39,6 +39,9 @@ const ProductSchema = new Schema(
 			type: Number,
 			required: true,
 		},
+		productDiscount: {
+			type: Number,
+		},
 
 		productLikes: {
 			type: Number,
