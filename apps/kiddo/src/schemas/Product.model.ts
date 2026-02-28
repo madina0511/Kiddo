@@ -34,6 +34,10 @@ const ProductSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		productViews: {
+			type: Number,
+			default: 0,
+		},
 
 		productPrice: {
 			type: Number,

@@ -18,6 +18,7 @@ registerEnumType(ProductType, {
 });
 
 export enum ProductCategory {
+	INDOORWEAR = 'INDOORWEAR',
 	OUTERWEAR = 'OUTERWEAR',
 	ACCESSORIES = 'ACCESSORIES',
 	SWIMWEAR = 'SWIMWEAR',
@@ -53,6 +54,7 @@ registerEnumType(BabySize, {
 });
 
 export enum Gender {
+	ALL = 'ALL',
 	BOY = 'BOY',
 	GIRL = 'GIRL',
 }

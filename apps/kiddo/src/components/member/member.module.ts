@@ -17,5 +17,6 @@ import { LikeModule } from '../like/like.module';
 		ViewModule,
 		LikeModule,
 	],
+	exports: [MemberService],
 })
 export class MemberModule {}

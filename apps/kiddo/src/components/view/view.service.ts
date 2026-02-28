@@ -27,7 +27,7 @@ export class ViewService {
 		const search: T = { memberId: memberId, viewRefId: viewRefId };
 		return await this.viewModel.findOne(search).exec();
 	}
-	public async getVisitedProperties(memberId: ObjectId, input: OrdinaryInquiry): Promise<Products> {
+	public async getVisitedProducts(memberId: ObjectId, input: OrdinaryInquiry): Promise<Products> {
 		const { page, limit } = input;
 		const match: T = { viewGroup: ViewGroup.PRODUCT, memberId: memberId };
 
@@ -59,7 +59,7 @@ export class ViewService {
 			.exec();
 
 		const result: Products = { list: [], metaCounter: data[0].metaCounter };
-		result.list = data[0].list.map((ele) => ele.visitedProperty);
+		result.list = data[0].list.map((ele) => ele.visitedProduct);
 
 		return result;
 	}

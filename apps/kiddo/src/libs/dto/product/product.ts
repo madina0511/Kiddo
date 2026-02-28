@@ -32,8 +32,8 @@ export class Product {
 	@Field(() => Gender)
 	gender: Gender;
 
-	@Field(() => Number)
-	productDiscount: number;
+	@Field(() => Number, { nullable: true })
+	productDiscount?: number;
 
 	@Field(() => Int)
 	productViews: number;
@@ -47,14 +47,11 @@ export class Product {
 	@Field(() => Int)
 	productRank: number;
 
-	@Field(() => [String])
-	productImages: string[];
+	@Field(() => [String], { nullable: true })
+	productImages?: string[];
 
 	@Field(() => String, { nullable: true })
 	productDesc?: string;
-
-	@Field(() => Boolean)
-	productRent: boolean;
 
 	@Field(() => String)
 	memberId: ObjectId;

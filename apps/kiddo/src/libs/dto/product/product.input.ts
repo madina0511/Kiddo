@@ -24,21 +24,25 @@ export class ProductInput {
 	babySize: BabySize;
 
 	@IsNotEmpty()
+	@Field(() => Gender)
+	gender: Gender;
+
+	@IsNotEmpty()
 	@Length(3, 100)
 	@Field(() => String)
 	productTitle: string;
 
 	@IsNotEmpty()
-	@Field(() => Number)
+	@Field(() => Int)
 	productPrice: number;
 
 	@IsOptional()
-	@Field(() => Number)
-	productDiscount: number;
+	@Field(() => Int, { nullable: true })
+	productDiscount?: number;
 
-	@IsNotEmpty()
-	@Field(() => [String])
-	productImages: string[];
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	productImages?: string[];
 
 	@IsOptional()
 	@Length(5, 500)
@@ -187,7 +191,7 @@ class ALPISearch {
 }
 
 @InputType()
-export class AllProductInquiry {
+export class AllProductsInquiry {
 	@IsNotEmpty()
 	@Min(1)
 	@Field(() => Int)
