@@ -1,6 +1,14 @@
 import { Schema } from 'mongoose';
 
-import { BabySize, Gender, ProductCategory, ProductStatus, ProductType } from '../libs/enums/product.enum';
+import {
+	AgeGroup,
+	ClothingSize,
+	Gender,
+	ProductCategory,
+	ProductColor,
+	ProductStatus,
+	ProductType,
+} from '../libs/enums/product.enum';
 
 const ProductSchema = new Schema(
 	{
@@ -13,6 +21,11 @@ const ProductSchema = new Schema(
 			type: String,
 			enum: ProductCategory,
 		},
+		brandName: {
+			type: String,
+			required: false,
+			trim: true,
+		},
 
 		productStatus: {
 			type: String,
@@ -20,11 +33,15 @@ const ProductSchema = new Schema(
 			default: ProductStatus.ACTIVE,
 		},
 
-		babySize: {
+		ageGroup: {
 			type: String,
-			enum: BabySize,
-			required: true,
+			enum: AgeGroup,
 		},
+		size: {
+			type: [String],
+			enum: ClothingSize,
+		},
+
 		gender: {
 			type: String,
 			enum: Gender,
@@ -33,6 +50,7 @@ const ProductSchema = new Schema(
 		productTitle: {
 			type: String,
 			required: true,
+			trim: true,
 		},
 		productViews: {
 			type: Number,
@@ -45,6 +63,7 @@ const ProductSchema = new Schema(
 		},
 		productDiscount: {
 			type: Number,
+			default: 0,
 		},
 
 		productLikes: {
@@ -69,6 +88,11 @@ const ProductSchema = new Schema(
 
 		productDesc: {
 			type: String,
+			trim: true,
+		},
+		productColors: {
+			type: [String],
+			enum: ProductColor,
 		},
 
 		memberId: {
@@ -92,6 +116,6 @@ const ProductSchema = new Schema(
 	{ timestamps: true, collection: 'products' },
 );
 
-ProductSchema.index({ productType: 1, babySize: 1, productTitle: 1, productPrice: 1 }, { unique: true });
+ProductSchema.index({ productType: 1, productTitle: 1, productPrice: 1 }, { unique: true });
 
 export default ProductSchema;

@@ -4,7 +4,15 @@ import { IsIn, IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validato
 import { Direction } from '../../enums/common.enum';
 
 import type { ObjectId } from 'mongoose';
-import { BabySize, Gender, ProductCategory, ProductStatus, ProductType } from '../../enums/product.enum';
+import {
+	AgeGroup,
+	ClothingSize,
+	Gender,
+	ProductCategory,
+	ProductColor,
+	ProductStatus,
+	ProductType,
+} from '../../enums/product.enum';
 import { Product } from './product';
 import { availableProductSorts } from '../../config';
 
@@ -20,9 +28,12 @@ export class ProductInput {
 	productCategory: ProductCategory;
 
 	@IsNotEmpty()
-	@Field(() => BabySize)
-	babySize: BabySize;
+	@Field(() => [ClothingSize])
+	sizes: ClothingSize[];
 
+	@IsNotEmpty()
+	@Field(() => [AgeGroup])
+	ageGroups: AgeGroup[];
 	@IsNotEmpty()
 	@Field(() => Gender)
 	gender: Gender;
@@ -32,9 +43,17 @@ export class ProductInput {
 	@Field(() => String)
 	productTitle: string;
 
+	@IsOptional()
+	@Length(3, 100)
+	@Field(() => String)
+	brandName: string;
+
 	@IsNotEmpty()
 	@Field(() => Int)
 	productPrice: number;
+	@IsOptional()
+	@Field(() => [ProductColor], { nullable: true })
+	productColors?: ProductColor[];
 
 	@IsOptional()
 	@Field(() => Int, { nullable: true })
@@ -98,8 +117,12 @@ class PISearch {
 	typeList?: ProductType[];
 
 	@IsOptional()
-	@Field(() => [BabySize], { nullable: true })
-	babySize?: BabySize[];
+	@Field(() => [ClothingSize], { nullable: true })
+	size?: ClothingSize[];
+
+	@IsOptional()
+	@Field(() => [AgeGroup], { nullable: true })
+	ageGroup?: AgeGroup[];
 
 	@IsOptional()
 	@Field(() => [Gender], { nullable: true })

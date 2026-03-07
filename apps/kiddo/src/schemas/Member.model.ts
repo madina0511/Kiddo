@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { MemberAuthType, MemberBrandType, MemberStatus, MemberType } from '../libs/enums/member.enum';
+import { MemberAuthType, MemberStatus, MemberType } from '../libs/enums/member.enum';
 
 const MemberSchema = new Schema(
 	{
@@ -13,9 +13,10 @@ const MemberSchema = new Schema(
 			enum: MemberStatus,
 			default: MemberStatus.ACTIVE,
 		},
-		memberBrandType: {
+		brandName: {
 			type: String,
-			enum: MemberBrandType,
+			required: false,
+			trim: true,
 		},
 		memberAuthType: {
 			type: String,

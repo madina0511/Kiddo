@@ -2,7 +2,7 @@ import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validator';
 
 import type { ObjectId } from 'mongoose';
-import { ProductCategory, ProductStatus, ProductType } from '../../enums/product.enum';
+import { ProductCategory, ProductColor, ProductStatus, ProductType } from '../../enums/product.enum';
 
 @InputType()
 export class ProductUpdate {
@@ -26,6 +26,14 @@ export class ProductUpdate {
 	@Length(3, 100)
 	@Field(() => String, { nullable: true })
 	productTitle?: string;
+	@IsOptional()
+	@Field(() => [ProductColor], { nullable: true })
+	productColors?: ProductColor[];
+
+	@IsOptional()
+	@Length(3, 100)
+	@Field(() => String)
+	brandName: string;
 
 	@IsOptional()
 	@Min(0)

@@ -8,15 +8,7 @@ export enum MemberType {
 registerEnumType(MemberType, {
 	name: 'MemberType',
 });
-export enum MemberBrandType {
-	ABSORBA = 'ABSORBA',
-	AGABANG = 'AGABANG',
-	MORI = 'MORI',
-	ZARA_KIDS = 'ZARA KIDS',
-}
-registerEnumType(MemberBrandType, {
-	name: 'MemberBrandType',
-});
+
 export enum MemberStatus {
 	ACTIVE = 'ACTIVE',
 	BLOCK = 'BLOCK',

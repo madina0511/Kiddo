@@ -27,10 +27,19 @@ export enum ProductCategory {
 registerEnumType(ProductCategory, {
 	name: 'ProductCategory',
 });
+export enum ProductColor {
+	RED = 'RED',
+	BLUE = 'BLUE',
+	WHITE = 'WHITE',
+	BLACK = 'BLACK',
+	PINK = 'PINK',
+	GREEN = 'GREEN',
+}
+registerEnumType(ProductColor, {
+	name: 'ProductColor',
+});
 
 export enum ProductStatus {
-	IN_STOCK = 'IN STOCK',
-	OUT_OF_STOCK = 'OUT OF STOCK',
 	SOLD = 'SOLD',
 	DELETE = 'DELETE',
 	ACTIVE = 'ACTIVE',
@@ -39,18 +48,44 @@ registerEnumType(ProductStatus, {
 	name: 'ProductStatus',
 });
 
-export enum BabySize {
+export enum AgeGroup {
 	ALL = 'ALL',
-	NB = 'NEWBORN', // 0-1 oy
-	M3 = '0-3M',
-	M6 = '3-6M',
-	M9 = '6-9M',
-	M12 = '9-12M',
-	M18 = '12-18M',
-	M24 = '18-24M',
+
+	M0_3 = '0-3 MONTHS',
+	M3_6 = '3-6 MONTHS',
+	M6_12 = '6-12 MONTHS',
+	M12_18 = '12-18 MONTHS',
+	M18_24 = '18-24 MONTHS',
+
+	Y2_3 = '2-3 YEARS',
+	Y3_4 = '3-4 YEARS',
+	Y5_6 = '5-6 YEARS',
+	Y7_8 = '7-8 YEARS',
+	Y9_10 = '9-10 YEARS',
+	Y11_12 = '11-12 YEARS',
+	Y13_14 = '13-14 YEARS',
+	Y15_16 = '15-16 YEARS',
+
+	ONE_SIZE = 'ONE SIZE',
 }
-registerEnumType(BabySize, {
-	name: 'BabySize',
+
+registerEnumType(AgeGroup, {
+	name: 'AgeGroup',
+});
+export enum ClothingSize {
+	SIZE_86_92 = '86/92',
+	SIZE_92_98 = '92/98',
+	SIZE_98_104 = '98/104',
+	SIZE_110_116 = '110/116',
+	SIZE_122_128 = '122/128',
+	SIZE_134_140 = '134/140',
+	SIZE_146_152 = '146/152',
+	SIZE_158_164 = '158/164',
+	SIZE_170_176 = '170/176',
+}
+
+registerEnumType(ClothingSize, {
+	name: 'ClothingSize',
 });
 
 export enum Gender {

@@ -4,7 +4,7 @@ import type { ObjectId } from 'mongoose';
 
 import { Member, TotalCounter } from '../member/member';
 import { MeLiked } from '../like/like';
-import { BabySize, Gender, ProductCategory, ProductStatus, ProductType } from '../../enums/product.enum';
+import { AgeGroup, ClothingSize, Gender, ProductCategory, ProductStatus, ProductType } from '../../enums/product.enum';
 
 @ObjectType()
 export class Product {
@@ -14,17 +14,26 @@ export class Product {
 	@Field(() => ProductType)
 	productType: ProductType;
 
+	@Field(() => [String], { nullable: true })
+	productColors?: string[];
+
 	@Field(() => ProductStatus)
 	productStatus: ProductStatus;
 
 	@Field(() => ProductCategory)
 	productCategory: ProductCategory;
 
-	@Field(() => BabySize)
-	babySize: BabySize;
+	@Field(() => [AgeGroup])
+	ageGroup: AgeGroup[];
+
+	@Field(() => [ClothingSize])
+	size: ClothingSize[];
 
 	@Field(() => String)
 	productTitle: string;
+
+	@Field(() => String)
+	brandName: string;
 
 	@Field(() => Number)
 	productPrice: number;

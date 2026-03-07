@@ -146,7 +146,7 @@ export class ProductService {
 		const {
 			memberId,
 			genderList,
-			babySize,
+			ageGroup,
 			typeList,
 
 			pricesRange,
