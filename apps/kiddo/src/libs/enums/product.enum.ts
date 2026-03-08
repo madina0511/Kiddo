@@ -5,6 +5,14 @@ export enum ProductType {
 	SLEEPSUIT = 'SLEEPSUIT',
 	BODYSUIT = 'BODYSUIT',
 	T_SHIRT = 'T_SHIRT',
+	BLOUSES = 'BLOUSES',
+	TOPS = 'TOPS',
+	SHIRTS = 'SHIRTS',
+	KNIT = 'KNIT',
+	SKIRTS = 'SKIRTS',
+	LEGGINGS = 'LEGGINGS',
+	JEANS = 'JEANS',
+	SHORTS = 'SHORTS',
 	PANTS = 'PANTS',
 	DRESS = 'DRESS',
 	SET = 'SET',
@@ -12,12 +20,14 @@ export enum ProductType {
 	SWEATER = 'SWEATER',
 	HOODIE = 'HOODIE',
 	PAJAMA = 'PAJAMA',
+	UNDERWEAR_NIGHTWEAR = 'UNDERWEAR NIGHTWEAR',
 }
 registerEnumType(ProductType, {
 	name: 'ProductType',
 });
 
 export enum ProductCategory {
+	ALL = 'ALL',
 	INDOORWEAR = 'INDOORWEAR',
 	OUTERWEAR = 'OUTERWEAR',
 	ACCESSORIES = 'ACCESSORIES',
