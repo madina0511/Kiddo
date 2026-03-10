@@ -44,6 +44,7 @@ export enum ProductColor {
 	BLACK = 'BLACK',
 	PINK = 'PINK',
 	GREEN = 'GREEN',
+	BEIGE = 'BEIGE',
 }
 registerEnumType(ProductColor, {
 	name: 'ProductColor',

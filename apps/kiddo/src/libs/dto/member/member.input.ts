@@ -25,6 +25,9 @@ export class MemberInput {
 	@Field(() => MemberType, { nullable: true })
 	memberType?: MemberType;
 
+	@Field(() => String, { nullable: true })
+	agentCode?: string;
+
 	@IsOptional()
 	@Field(() => String, { nullable: true })
 	brandName?: string;

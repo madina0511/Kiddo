@@ -30,6 +30,9 @@ export class Member {
 	memberPassword?: string;
 
 	@Field(() => String, { nullable: true })
+	agentCode?: string;
+
+	@Field(() => String, { nullable: true })
 	memberFullName?: string;
 
 	@Field(() => String, { nullable: true })

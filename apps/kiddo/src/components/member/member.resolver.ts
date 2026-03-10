@@ -27,6 +27,9 @@ export class MemberResolver {
 		@Args('input')
 		input: MemberInput,
 	): Promise<Member> {
+		if (input.memberType === 'AGENT' && input.agentCode !== 'best') {
+			throw new Error('Only valid agent code can register an agent');
+		}
 		console.log('Mutation: signup');
 		console.log('input:', input);
 		return await this.memberService.signup(input);

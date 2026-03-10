@@ -48,7 +48,6 @@ export class ProductUpdate {
 	@IsOptional()
 	@Field(() => [String], { nullable: true })
 	productImages?: string[];
-
 	@IsOptional()
 	@Length(5, 500)
 	@Field(() => String, { nullable: true })

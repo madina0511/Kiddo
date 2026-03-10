@@ -41,6 +41,10 @@ const MemberSchema = new Schema(
 		memberFullName: {
 			type: String,
 		},
+		agentCode: {
+			type: String,
+			required: false,
+		},
 		memberImage: {
 			type: String,
 			default: '',
