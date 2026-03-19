@@ -51,12 +51,12 @@ export class Orders {
 	@Field(() => [Order])
 	list: Order[];
 
-	@Field(() => [TotalCounter])
-	metaCounter: TotalCounter[];
+	@Field(() => [OrderTotalCounter])
+	metaCounter: OrderTotalCounter[];
 }
 
 @ObjectType()
-export class TotalCounter {
+export class OrderTotalCounter {
 	@Field(() => Int)
 	total: number;
 }

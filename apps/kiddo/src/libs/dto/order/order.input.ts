@@ -1,6 +1,7 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { OrderStatus } from '../../enums/order.enum';
 import { IsEnum, IsInt, IsNotEmpty, IsOptional, Min } from 'class-validator';
+
 @InputType()
 export class OrderItemInput {
 	@IsNotEmpty()
@@ -21,6 +22,7 @@ export class OrderItemInput {
 	quantity: number;
 
 	@Min(0)
+	@IsInt()
 	@Field(() => Int)
 	price: number;
 }
@@ -31,8 +33,16 @@ export class CreateOrderInput {
 	items: OrderItemInput[];
 
 	@Min(0)
+	@IsInt()
 	@Field(() => Int)
 	totalAmount: number;
+}
+
+@InputType()
+export class OrdersInquirySearch {
+	@IsOptional()
+	@Field(() => OrderStatus, { nullable: true })
+	orderStatus?: OrderStatus;
 }
 
 @InputType()
@@ -53,20 +63,11 @@ export class OrdersInquiry {
 }
 
 @InputType()
-export class OrdersInquirySearch {
-	@IsOptional()
-	@IsEnum(OrderStatus)
-	@Field(() => String, { nullable: true })
-	orderStatus?: OrderStatus;
-}
-
-@InputType()
 export class UpdateOrderStatus {
 	@IsNotEmpty()
 	@Field(() => String)
 	orderId: string;
 
-	@IsEnum(OrderStatus)
-	@Field(() => String)
+	@Field(() => OrderStatus)
 	orderStatus: OrderStatus;
 }

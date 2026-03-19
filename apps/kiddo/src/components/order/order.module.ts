@@ -3,9 +3,10 @@ import { OrderResolver } from './order.resolver';
 import { OrderService } from './order.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import OrderSchema from '../../schemas/Order.model';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-	imports: [MongooseModule.forFeature([{ name: 'Order', schema: OrderSchema }])],
+	imports: [MongooseModule.forFeature([{ name: 'Order', schema: OrderSchema }]), AuthModule],
 	providers: [OrderResolver, OrderService],
 })
 export class OrderModule {}
