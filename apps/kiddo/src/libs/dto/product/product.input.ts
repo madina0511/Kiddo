@@ -23,6 +23,10 @@ export class ProductInput {
 	@Field(() => ProductType)
 	productType: ProductType;
 
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	setItems?: string[];
+
 	@IsNotEmpty()
 	@Field(() => ProductCategory)
 	productCategory: ProductCategory;
@@ -64,7 +68,6 @@ export class ProductInput {
 	productImages?: string[];
 
 	@IsOptional()
-	@Length(5, 500)
 	@Field(() => String, { nullable: true })
 	productDesc?: string;
 
@@ -117,6 +120,10 @@ class PISearch {
 	@IsOptional()
 	@Field(() => String, { nullable: true })
 	text?: string;
+
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	setItems?: string[];
 }
 
 @InputType()

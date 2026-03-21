@@ -32,7 +32,7 @@ export class ProductResolver {
 		@Args('input') input: ProductInput,
 		@AuthMember('_id') memberId: ObjectId,
 	): Promise<Product> {
-		console.log('Mutation:createProduct');
+		console.log('Mutation:createProduct', input);
 		input.memberId = memberId;
 		return await this.productService.createProduct(input);
 	}

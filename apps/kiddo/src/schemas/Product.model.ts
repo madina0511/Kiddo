@@ -17,6 +17,11 @@ const ProductSchema = new Schema(
 			enum: ProductType,
 			required: true,
 		},
+		setItems: {
+			type: [Schema.Types.ObjectId],
+			ref: 'Product',
+			default: [],
+		},
 		productCategory: {
 			type: String,
 			enum: ProductCategory,
@@ -116,6 +121,6 @@ const ProductSchema = new Schema(
 	{ timestamps: true, collection: 'products' },
 );
 
-ProductSchema.index({ productType: 1, productTitle: 1, productPrice: 1 }, { unique: true });
+ProductSchema.index({ productType: 1, productTitle: 1, productPrice: 1, memberId: 1 }, { unique: true });
 
 export default ProductSchema;

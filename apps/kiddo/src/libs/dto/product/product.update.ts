@@ -13,6 +13,9 @@ export class ProductUpdate {
 	@IsOptional()
 	@Field(() => ProductType, { nullable: true })
 	productType?: ProductType;
+	@IsOptional()
+	@Field(() => [String], { nullable: true })
+	setItems?: string[];
 
 	@IsOptional()
 	@Field(() => ProductStatus, { nullable: true })

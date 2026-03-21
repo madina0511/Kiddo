@@ -15,6 +15,9 @@ export class Product {
 	productType: ProductType;
 
 	@Field(() => [String], { nullable: true })
+	setItems?: string[];
+
+	@Field(() => [String], { nullable: true })
 	productColors?: string[];
 
 	@Field(() => ProductStatus)
