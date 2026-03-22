@@ -59,6 +59,5 @@ const OrderSchema = new Schema(
 );
 
 OrderSchema.index({ memberId: 1, createdAt: -1 });
-OrderSchema.index({ orderNumber: 1 }, { unique: true });
 
 export default OrderSchema;
