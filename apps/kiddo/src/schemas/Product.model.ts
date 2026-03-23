@@ -39,7 +39,7 @@ const ProductSchema = new Schema(
 		},
 
 		ageGroup: {
-			type: String,
+			type: [String],
 			enum: AgeGroup,
 		},
 		size: {

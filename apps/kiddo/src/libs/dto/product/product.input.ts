@@ -33,11 +33,11 @@ export class ProductInput {
 
 	@IsNotEmpty()
 	@Field(() => [ClothingSize])
-	sizes: ClothingSize[];
+	size: ClothingSize[];
 
 	@IsNotEmpty()
 	@Field(() => [AgeGroup])
-	ageGroups: AgeGroup[];
+	ageGroup: AgeGroup[];
 	@IsNotEmpty()
 	@Field(() => Gender)
 	gender: Gender;
