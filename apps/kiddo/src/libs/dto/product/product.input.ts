@@ -99,7 +99,7 @@ class PISearch {
 
 	@IsOptional()
 	@Field(() => [ProductType], { nullable: true })
-	typeList?: ProductType[];
+	productType?: ProductType[];
 
 	@IsOptional()
 	@Field(() => [ClothingSize], { nullable: true })
@@ -124,6 +124,9 @@ class PISearch {
 	@IsOptional()
 	@Field(() => [String], { nullable: true })
 	setItems?: string[];
+	@IsOptional()
+	@Field(() => [ProductColor], { nullable: true })
+	productColors?: ProductColor[];
 }
 
 @InputType()

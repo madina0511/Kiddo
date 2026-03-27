@@ -14,7 +14,7 @@ import { LikeService } from '../like/like.service';
 import { LikeInput } from '../../libs/dto/like/like.input';
 import { LikeGroup } from '../../libs/enums/like.enum';
 import { Product, Products } from '../../libs/dto/product/product';
-import { ProductStatus } from '../../libs/enums/product.enum';
+import { ProductStatus, ProductType } from '../../libs/enums/product.enum';
 import { ProductUpdate } from '../../libs/dto/product/product.update';
 import {
 	AgentProductsInquiry,
@@ -143,35 +143,35 @@ export class ProductService {
 
 	private shapeMatchQuery(match: T, input: ProductsInquiry): void {
 		// input.search ichidan kerakli filter field’larni ajratib olyapmiz
+		const search = input.search ?? {};
 		const {
 			memberId,
 			genderList,
 			ageGroup,
-			typeList,
-
+			productType,
+			categoryList,
+			size,
+			productColors,
+			setItems,
 			pricesRange,
-
 			text,
 		} = input.search;
 
-		// agar memberId bo‘lsa, uni ObjectId ga aylantirib match ga qo‘shamiz
 		if (memberId) match.memberId = shapeIntoMongoObjectId(memberId);
-
-		// agar typeList bo‘lsa, propertyType shu turlardan biri bo‘lishi kerak
-		if (typeList && typeList.length) match.productType = { $in: typeList };
-
-		// price bo‘yicha filter: start va end oralig‘ida bo‘lishi shart
-		if (pricesRange)
-			match.productPrice = {
-				$gte: pricesRange.start,
-				$lte: pricesRange.end,
-			};
-
-		// agar text bo‘lsa, propertyTitle bo‘yicha regex qidiruv
-		if (text)
-			match.productTitle = {
-				$regex: new RegExp(text, 'i'), // i = case-insensitive
-			};
+		if (productType && productType.length) {
+			match.productType = { $in: productType };
+		} else {
+			match.productType = { $ne: ProductType.SET };
+		}
+		if (productType && productType.length) match.productType = { $in: productType };
+		if (categoryList && categoryList.length) match.productCategory = { $in: categoryList };
+		if (genderList && genderList.length) match.gender = { $in: genderList };
+		if (ageGroup && ageGroup.length) match.ageGroup = { $in: ageGroup };
+		if (size && size.length) match.size = { $in: size };
+		if (productColors && productColors.length) match.productColors = { $in: productColors };
+		if (pricesRange) match.productPrice = { $gte: pricesRange.start, $lte: pricesRange.end };
+		if (text) match.productTitle = { $regex: new RegExp(text, 'i') };
+		if (setItems && setItems.length) match.setItems = { $in: setItems };
 	}
 	public async getFavorities(memberId: ObjectId, input: OrdinaryInquiry): Promise<Products> {
 		return await this.likeService.getFavoriteProducts(memberId, input);
