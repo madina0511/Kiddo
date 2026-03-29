@@ -10,7 +10,7 @@ export class OrderItem {
 	productName: string;
 
 	@Field(() => String)
-	productImage: string;
+	productImages: string;
 
 	@Field(() => Int)
 	quantity: number;

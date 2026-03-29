@@ -12,7 +12,7 @@ const OrderItemSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	productImage: {
+	productImages: {
 		type: String,
 		required: true,
 	},

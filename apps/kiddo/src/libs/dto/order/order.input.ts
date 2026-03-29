@@ -14,7 +14,7 @@ export class OrderItemInput {
 
 	@IsNotEmpty()
 	@Field(() => String)
-	productImage: string;
+	productImages: string;
 
 	@Min(1)
 	@IsInt()
