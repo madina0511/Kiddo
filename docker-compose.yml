@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  kiddo:
+    container_name: kiddo
+    restart: always
+    image: node:20.10.0
+    ports:
+      - '3001:3007'
+    volumes:
+      - ./:/usr/src/kiddo
+    working_dir: /usr/src/kiddo
+    networks:
+      - monorepo-network
+    command: bash -c "npm install && npm run build && npm run start:prod"
+
+  kiddo-batch:
+    container_name: kiddo-batch
+    restart: unless-stopped
+    image: node:20.10.0
+    ports:
+      - '3002:3008'
+    volumes:
+      - ./:/usr/src/kiddo
+    working_dir: /usr/src/kiddo
+    networks:
+      - monorepo-network
+    command: bash -c "npm install && npm run build && npm run start:prod:batch"
+
+networks:
+  monorepo-network:
+    driver: bridge
+
+#kiddo-next: localhost: 300=>container:3000
+#kiddo: localhost: 3001=>container:3007
+#kiddo: localhost: 3002=>container:3008
