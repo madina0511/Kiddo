@@ -50,7 +50,7 @@ export class ProductService {
 
 			return result;
 		} catch (err) {
-			console.log('Error ServiceModel:', err.message);
+			console.log('Error ServiceModel:', err);
 			throw new BadRequestException(Message.CREATE_FAILED);
 		}
 	}

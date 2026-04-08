@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
-import BoardArticleSchema from './../../schemas/BoardArticle.model';
+
 import { Model, ObjectId } from 'mongoose';
 import { BoardArticle, BoardArticles } from '../../libs/dto/board-article/board-article';
 import { InjectModel } from '@nestjs/mongoose';
@@ -16,7 +16,7 @@ import { BoardArticleStatus } from '../../libs/enums/board-article.enum';
 import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 import { BoardArticleUpdate } from '../../libs/dto/board-article/board-article.update';
-import { internalExecuteOperation } from 'node_modules/@apollo/server/dist/cjs/ApolloServer';
+
 import { lookupAuthMemberLiked, lookupMember, shapeIntoMongoObjectId } from '../../libs/config';
 import { LikeService } from '../like/like.service';
 import { LikeInput } from '../../libs/dto/like/like.input';
@@ -43,7 +43,7 @@ export class BoardArticleService {
 			});
 			return result;
 		} catch (err) {
-			console.log('Error, Service.model:', err.message);
+			console.log('Error, Service.model:', err);
 			throw new BadRequestException(Message.CREATE_FAILED);
 		}
 	}

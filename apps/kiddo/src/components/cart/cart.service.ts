@@ -75,8 +75,8 @@ export class CartService {
 			await cart.save();
 			return cart;
 		} catch (err) {
-			console.error('addToCart ERROR:', err.message);
-			throw new Error(err.message);
+			console.error('addToCart ERROR:', err);
+			throw new Error();
 		}
 	}
 

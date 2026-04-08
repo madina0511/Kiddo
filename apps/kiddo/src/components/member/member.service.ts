@@ -36,7 +36,7 @@ export class MemberService {
 
 			return result;
 		} catch (err) {
-			console.log('Error ServiceModel:', err.message);
+			console.log('Error ServiceModel:', err);
 			throw new BadRequestException(Message.USED_MEMBER_NICK_OR_PHONE);
 		}
 	}
