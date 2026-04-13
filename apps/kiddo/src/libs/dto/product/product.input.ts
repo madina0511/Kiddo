@@ -195,6 +195,9 @@ class ALPISearch {
 	@IsOptional()
 	@Field(() => ProductStatus, { nullable: true })
 	productStatus?: ProductStatus;
+	@IsOptional()
+	@Field(() => ProductType, { nullable: true })
+	productType?: ProductType;
 
 	@IsOptional()
 	@Field(() => [Gender], { nullable: true })
