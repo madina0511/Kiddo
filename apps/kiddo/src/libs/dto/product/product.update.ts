@@ -35,8 +35,8 @@ export class ProductUpdate {
 
 	@IsOptional()
 	@Length(3, 100)
-	@Field(() => String)
-	brandName: string;
+	@Field(() => String, { nullable: true })
+	brandName?: string;
 
 	@IsOptional()
 	@Min(0)
