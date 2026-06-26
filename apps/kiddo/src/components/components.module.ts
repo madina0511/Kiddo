@@ -9,8 +9,21 @@ import { LikeModule } from './like/like.module';
 import { BoardArticleModule } from './board-article/board-article.module';
 import { OrderModule } from './order/order.module';
 import { CartModule } from './cart/cart.module';
+import { AiModule } from './ai/ai.module';
 
 @Module({
-  imports: [MemberModule, ProductModule, AuthModule, FollowModule, CommentModule, ViewModule, LikeModule, BoardArticleModule, OrderModule, CartModule]
+	imports: [
+		MemberModule,
+		ProductModule,
+		AuthModule,
+		FollowModule,
+		CommentModule,
+		ViewModule,
+		LikeModule,
+		BoardArticleModule,
+		OrderModule,
+		CartModule,
+		AiModule,
+	],
 })
 export class ComponentsModule {}

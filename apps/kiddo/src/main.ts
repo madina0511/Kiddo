@@ -9,7 +9,7 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule); // app = express + nestjs
 	app.useGlobalPipes(new ValidationPipe());
 	app.useGlobalInterceptors(new LoggingInterceptor());
-	app.enableCors({ origin: true, credentials: true }); // origin: ['https://nestar.uz', 'https://admin.nestar.uz']
+	app.enableCors({ origin: true, credentials: true }); // origin: ['https://', 'https://']
 	// credentials:true =>cookie session ga access berish
 	app.use(graphqlUploadExpress({ maxFileSize: 20 * 1024 * 1024, maxFiles: 10 }));
 	app.use('/uploads', express.static('./uploads'));

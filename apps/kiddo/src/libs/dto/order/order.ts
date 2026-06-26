@@ -1,6 +1,28 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { OrderStatus } from '../../enums/order.enum';
 
+// 1. Address ObjectType qo'shildi
+@ObjectType()
+export class Address {
+	@Field(() => String)
+	recipientName: string;
+
+	@Field(() => String)
+	phone: string;
+
+	@Field(() => String)
+	zipCode: string;
+
+	@Field(() => String)
+	address: string;
+
+	@Field(() => String, { nullable: true })
+	addressDetail?: string;
+
+	@Field(() => String, { nullable: true })
+	deliveryNote?: string;
+}
+
 @ObjectType()
 export class OrderItem {
 	@Field(() => String)
@@ -38,6 +60,10 @@ export class Order {
 
 	@Field(() => String)
 	orderStatus: OrderStatus;
+
+	// 2. address qo'shildi
+	@Field(() => Address)
+	address: Address;
 
 	@Field(() => Date)
 	createdAt: Date;

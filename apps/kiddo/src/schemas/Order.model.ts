@@ -2,6 +2,37 @@ import { Schema } from 'mongoose';
 import { ObjectId } from 'mongoose';
 import { OrderStatus } from '../libs/enums/order.enum';
 
+// 1. Address sub-schema
+const AddressSchema = new Schema(
+	{
+		recipientName: {
+			type: String,
+			required: true,
+		},
+		phone: {
+			type: String,
+			required: true,
+		},
+		zipCode: {
+			type: String,
+			required: true,
+		},
+		address: {
+			type: String,
+			required: true,
+		},
+		addressDetail: {
+			type: String,
+			default: '',
+		},
+		deliveryNote: {
+			type: String,
+			default: '',
+		},
+	},
+	{ _id: false },
+);
+
 const OrderItemSchema = new Schema({
 	productId: {
 		type: Schema.Types.ObjectId,
@@ -53,6 +84,11 @@ const OrderSchema = new Schema(
 			type: String,
 			enum: OrderStatus,
 			default: OrderStatus.PENDING,
+		},
+		// 2. Address field qo'shildi
+		address: {
+			type: AddressSchema,
+			required: true,
 		},
 	},
 	{ timestamps: true, collection: 'orders' },

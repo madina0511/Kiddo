@@ -1,32 +1,32 @@
 {
-  "$schema": "https://json.schemastore.org/nest-cli",
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/kiddo/src",
-  "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/kiddo/tsconfig.app.json"
-  },
-  "monorepo": true,
-  "root": "apps/kiddo",
-  "projects": {
-    "kiddo": {
-      "type": "application",
-      "root": "apps/kiddo",
-      "entryFile": "main",
-      "sourceRoot": "apps/kiddo/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/kiddo/tsconfig.app.json"
-      }
-    },
-    "kiddo-batch": {
-      "type": "application",
-      "root": "apps/kiddo-batch",
-      "entryFile": "main",
-      "sourceRoot": "apps/kiddo-batch/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/kiddo-batch/tsconfig.app.json"
-      }
-    }
-  }
+	"$schema": "https://json.schemastore.org/nest-cli",
+	"collection": "@nestjs/schematics",
+	"sourceRoot": "apps/kiddo/src",
+	"compilerOptions": {
+		"deleteOutDir": true,
+		"webpack": false,
+		"tsConfigPath": "apps/kiddo/tsconfig.app.json"
+	},
+	"monorepo": true,
+	"root": "apps/kiddo",
+	"projects": {
+		"kiddo": {
+			"type": "application",
+			"root": "apps/kiddo",
+			"entryFile": "main",
+			"sourceRoot": "apps/kiddo/src",
+			"compilerOptions": {
+				"tsConfigPath": "apps/kiddo/tsconfig.app.json"
+			}
+		},
+		"kiddo-batch": {
+			"type": "application",
+			"root": "apps/kiddo-batch",
+			"entryFile": "main",
+			"sourceRoot": "apps/kiddo-batch/src",
+			"compilerOptions": {
+				"tsConfigPath": "apps/kiddo-batch/tsconfig.app.json"
+			}
+		}
+	}
 }

@@ -17,6 +17,7 @@ export class OrderService {
 			memberId,
 			orderNumber,
 			input,
+			address: input.address,
 			orderStatus: OrderStatus.PENDING,
 		});
 	}
