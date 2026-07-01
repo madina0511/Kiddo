@@ -10,6 +10,7 @@ import { BoardArticleModule } from './board-article/board-article.module';
 import { OrderModule } from './order/order.module';
 import { CartModule } from './cart/cart.module';
 import { AiModule } from './ai/ai.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
 	imports: [
@@ -24,6 +25,7 @@ import { AiModule } from './ai/ai.module';
 		OrderModule,
 		CartModule,
 		AiModule,
+		PaymentModule,
 	],
 })
 export class ComponentsModule {}
