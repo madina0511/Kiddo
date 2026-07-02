@@ -89,6 +89,12 @@ export class Member {
 	@Field(() => String, { nullable: true })
 	accessToken?: string;
 
+	// libs/dto/member/member.ts — Member class ichiga qo'shing
+	@Field(() => String, { nullable: true })
+	memberEmail?: string;
+
+	memberGoogleId?: string; // GraphQL'da ko'rsatilmasin, faqat internal
+
 	/** from Aggregation **/
 	@Field(() => [MeLiked], { nullable: true })
 	meLiked?: MeLiked[];

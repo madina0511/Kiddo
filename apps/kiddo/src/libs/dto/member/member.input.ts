@@ -38,6 +38,13 @@ export class MemberInput {
 }
 
 @InputType()
+export class GoogleLoginInput {
+	@IsNotEmpty()
+	@Field(() => String)
+	idToken: string;
+}
+
+@InputType()
 export class LoginInput {
 	@IsNotEmpty()
 	@Length(3, 12)

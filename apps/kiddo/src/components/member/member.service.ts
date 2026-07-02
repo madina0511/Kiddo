@@ -15,6 +15,10 @@ import { LikeGroup } from '../../libs/enums/like.enum';
 import { LikeService } from '../like/like.service';
 import { lookupAuthMemberLiked } from '../../libs/config';
 import { LikeInput } from '../../libs/dto/like/like.input';
+import { GoogleAuthService } from '../auth/google-auth.service';
+import { MemberAuthType } from '../../libs/enums/member.enum';
+import { GoogleLoginInput } from '../../libs/dto/member/member.input';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class MemberService {
@@ -24,6 +28,7 @@ export class MemberService {
 		private readonly authService: AuthService,
 		private readonly viewService: ViewService,
 		private readonly likeService: LikeService,
+		private readonly googleAuthService: GoogleAuthService,
 	) {}
 
 	public async signup(input: MemberInput): Promise<Member> {
@@ -58,6 +63,55 @@ export class MemberService {
 
 		return response;
 	}
+
+	public async googleLogin(input: GoogleLoginInput): Promise<Member> {
+		const googleUser = await this.googleAuthService.verifyIdToken(input.idToken);
+
+		if (!googleUser.emailVerified) {
+			throw new InternalServerErrorException(Message.NO_MEMBER_NICK);
+		}
+
+		let member = await this.memberModel.findOne({ memberEmail: googleUser.email }).exec();
+
+		if (member) {
+			if (member.memberStatus === MemberStatus.DELETE) {
+				throw new InternalServerErrorException(Message.NO_MEMBER_NICK);
+			} else if (member.memberStatus === MemberStatus.BLOCK) {
+				throw new InternalServerErrorException(Message.BLOCKED_USER);
+			}
+		} else {
+			const randomPassword = crypto.randomBytes(16).toString('hex');
+
+			try {
+				member = await this.memberModel.create({
+					memberNick: this.generateNickFromEmail(googleUser.email),
+					memberPassword: await this.authService.hasPassword(randomPassword),
+					memberPhone: `google_${googleUser.googleId}`.slice(0, 20),
+					memberEmail: googleUser.email,
+					memberGoogleId: googleUser.googleId,
+					memberAuthType: MemberAuthType.GOOGLE,
+					memberImage: googleUser.picture,
+					memberFullName: googleUser.name,
+				});
+			} catch (err) {
+				console.log('Error Google Signup:', err);
+				throw new BadRequestException(Message.USED_MEMBER_NICK_OR_PHONE);
+			}
+		}
+
+		member.accessToken = await this.authService.createToken(member);
+		return member;
+	}
+
+	private generateNickFromEmail(email: string): string {
+		const base = email
+			.split('@')[0]
+			.replace(/[^a-zA-Z0-9]/g, '')
+			.slice(0, 8);
+		const suffix = crypto.randomBytes(2).toString('hex');
+		return `${base}${suffix}`.slice(0, 12);
+	}
+
 	public async updateMember(memberId: ObjectId, input: MemberUpdate): Promise<Member> {
 		const result: Member = await this.memberModel
 			.findOneAndUpdate(

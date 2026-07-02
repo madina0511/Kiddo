@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { HttpModule } from '@nestjs/axios';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from './guards/auth.guard';
+import { GoogleAuthService } from './google-auth.service';
 
 @Module({
 	imports: [
@@ -12,7 +13,7 @@ import { AuthGuard } from './guards/auth.guard';
 			signOptions: { expiresIn: '30d' },
 		}),
 	],
-	providers: [AuthService, AuthGuard],
-	exports: [AuthService, AuthGuard],
+	providers: [AuthService, AuthGuard, GoogleAuthService],
+	exports: [AuthService, AuthGuard, GoogleAuthService],
 })
 export class AuthModule {}

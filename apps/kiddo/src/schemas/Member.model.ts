@@ -100,6 +100,16 @@ const MemberSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
+		memberEmail: {
+			type: String,
+			index: { unique: true, sparse: true },
+			required: false,
+		},
+		memberGoogleId: {
+			type: String,
+			index: { unique: true, sparse: true },
+			required: false,
+		},
 		deletedAt: {
 			type: Date,
 		},

@@ -1,7 +1,13 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { MemberService } from './member.service';
 import { Member, Members } from '../../libs/dto/member/member';
-import { AgentsInquiry, LoginInput, MemberInput, MembersInquiry } from '../../libs/dto/member/member.input';
+import {
+	AgentsInquiry,
+	GoogleLoginInput,
+	LoginInput,
+	MemberInput,
+	MembersInquiry,
+} from '../../libs/dto/member/member.input';
 import { UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { MemberType } from '../../libs/enums/member.enum';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -45,6 +51,14 @@ export class MemberResolver {
 	): Promise<Member> {
 		console.log('Mutation:login', input);
 		return await this.memberService.login(input);
+	}
+
+	@Mutation(() => Member)
+	@UsePipes(ValidationPipe)
+	@Mutation(() => Member)
+	public async googleLogin(@Args('input') input: GoogleLoginInput): Promise<Member> {
+		console.log('Mutation: googleLogin');
+		return await this.memberService.googleLogin(input);
 	}
 
 	@Roles(MemberType.USER, MemberType.AGENT)
