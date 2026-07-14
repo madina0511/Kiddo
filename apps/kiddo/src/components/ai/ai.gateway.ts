@@ -9,7 +9,9 @@ interface AiChatPayload {
 	message: string;
 }
 
-@WebSocketGateway({ transport: ['websocket'], secure: false })
+@WebSocketGateway({
+	path: '/ai-ws',
+})
 export class AiGateway implements OnGatewayInit {
 	private readonly logger = new Logger(AiGateway.name);
 
