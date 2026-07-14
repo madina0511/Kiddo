@@ -58,6 +58,9 @@ export class Order {
 	@Field(() => Int)
 	totalAmount: number;
 
+	@Field(() => Int)
+	totalAmountKRW: number;
+
 	@Field(() => String)
 	orderStatus: OrderStatus;
 

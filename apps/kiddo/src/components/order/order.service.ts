@@ -2,21 +2,29 @@ import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/commo
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
+import { ExchangeRateService } from '../exchange-rate/exchange-rate.service';
 import { Order, Orders } from '../../libs/dto/order/order';
 import { CreateOrderInput, OrdersInquiry, UpdateOrderStatus } from '../../libs/dto/order/order.input';
 import { OrderStatus } from '../../libs/enums/order.enum';
 @Injectable()
 export class OrderService {
-	constructor(@InjectModel('Order') private readonly orderModel: Model<Order>) {}
+	constructor(
+		@InjectModel('Order') private readonly orderModel: Model<Order>,
+		private readonly exchangeRateService: ExchangeRateService,
+	) {}
 
 	// Create Order
 
 	async createOrder(memberId: ObjectId, input: CreateOrderInput): Promise<Order> {
 		const orderNumber = `ORD-${Date.now()}-${uuidv4().slice(0, 6).toUpperCase()}`;
+		const totalAmountKRW = await this.exchangeRateService.convertUsdToKrw(input.totalAmount);
+
 		return this.orderModel.create({
 			memberId,
 			orderNumber,
-			input,
+			items: input.items,
+			totalAmount: input.totalAmount,
+			totalAmountKRW,
 			address: input.address,
 			orderStatus: OrderStatus.PENDING,
 		});

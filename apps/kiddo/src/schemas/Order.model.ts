@@ -80,6 +80,11 @@ const OrderSchema = new Schema(
 			required: true,
 			min: 0,
 		},
+		totalAmountKRW: {
+			type: Number,
+			required: true,
+			min: 0,
+		},
 		orderStatus: {
 			type: String,
 			enum: OrderStatus,
